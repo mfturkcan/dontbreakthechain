@@ -75,12 +75,12 @@ namespace DontBreakTheChain.Controllers
             if (ModelState.IsValid)
             {
                 string emailOrUsername = loginDto.EmailOrUsername;
-                bool isEmail = emailOrUsername.Contains('@');
+                bool isEmail = emailOrUsername.Contains("@");
                 User? user;
 
                 if (isEmail) user = await UserManager.FindByEmailAsync(emailOrUsername);
                 else user = await UserManager.FindByNameAsync(emailOrUsername);
-
+                
                 if(user == null || ! await UserManager.CheckPasswordAsync(user, loginDto.Password))
                 {
                     return Unauthorized();
@@ -122,7 +122,7 @@ namespace DontBreakTheChain.Controllers
         [HttpPost("deleteAccount")]
         public async Task<IActionResult> DeleteAccount()
         {
-           IdentityResult result = await UserManager.DeleteAsync(user: await UserManager.FindByNameAsync(User.Identity.Name));
+           IdentityResult result = await UserManager.DeleteAsync(user: await UserManager.FindByNameAsync(User?.Identity?.Name));
 
             if (result.Succeeded)
             {

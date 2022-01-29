@@ -35,7 +35,8 @@ builder.Services.AddCors();
 
 builder.Services.AddDbContext<ChainDbContext>(opt =>
 {
-    opt.UseSqlServer(Configuration.GetConnectionString("Default"));
+    // opt.UseSqlServer(Configuration.GetConnectionString("Default"));
+    opt.UseNpgsql(Configuration.GetConnectionString("Default"));
 });
 
 builder.Services.AddIdentity<User, IdentityRole>()
