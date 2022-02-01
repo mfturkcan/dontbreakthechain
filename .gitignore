@@ -315,4 +315,4 @@ DontBreakTheChain/client/npm
 
 # Optional REPL history
 DontBreakTheChain/client/node_repl_history
-DontBreakTheChain/client/next
+DontBreakTheChain/client/.next

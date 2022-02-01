@@ -68,7 +68,7 @@ namespace DontBreakTheChain.Controllers
         [HttpPut]
         public async Task<IActionResult> Put([FromBody] ChainDto chainDto)
         {
-            if(chainDto.ChainID == null)
+            if (chainDto.ChainID == null)
             {
                 ModelState.AddModelError("Id error", "ChainId cannot be null when updating models!");
             }

@@ -12,7 +12,7 @@ namespace DontBreakTheChain.Services.Implementations
         public override async Task Add(ChainPart entity, string Id)
         {
             int ChainId = int.Parse(Id);
-            Chain chain = dbContext.Chains.Where(x => x.ChainID.Equals(ChainId)).FirstOrDefault();
+            Chain chain = dbContext.Chains.Where(x => x.ChainID.Equals(ChainId)).SingleOrDefault();
 
             entity.Chain = chain;
 
