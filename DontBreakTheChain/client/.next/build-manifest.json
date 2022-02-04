@@ -30,10 +30,17 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
+<<<<<<< HEAD
     "/account/testUser": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/account/testUser.js"
+=======
+    "/chain/viewChain": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/chain/viewChain.js"
+>>>>>>> a94fd77a1f07eb3fd1bad09616677301a202303c
     ]
   },
   "ampFirstPages": []

@@ -56,6 +56,7 @@ const Login = (props: any) => {
       m={10}>
       <TextField
         required
+<<<<<<< HEAD
         name="email"
         label="required"
         helperText="Email"
@@ -63,6 +64,8 @@ const Login = (props: any) => {
         variant="standard" />
       <TextField
         required
+=======
+>>>>>>> a94fd77a1f07eb3fd1bad09616677301a202303c
         name="username"
         label="required"
         helperText="Username"

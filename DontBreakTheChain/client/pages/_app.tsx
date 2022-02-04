@@ -6,21 +6,21 @@ import Link from 'next/link';
 
 function MyApp({ Component, pageProps }: AppProps) {
 
-  return <AccountProvider>
-    <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar
-          component="div">
-          <Typography>
-            <Link href="/">DontBreakTheChain</Link>
-          </Typography>
-        </Toolbar>
-      </Container>
-    </AppBar>
-    <Container>
-      <Component {...pageProps} />
-    </Container>
-  </AccountProvider>
+    return <AccountProvider>
+        <AppBar position="static">
+            <Container maxWidth="xl">
+                <Toolbar
+                    component="div">
+                    <Typography>
+                        <Link href="/">DontBreakTheChain</Link>
+                    </Typography>
+                </Toolbar>
+            </Container>
+        </AppBar>
+        <Container>
+            <Component {...pageProps} />
+        </Container>
+    </AccountProvider>
 }
 
 export default MyApp
