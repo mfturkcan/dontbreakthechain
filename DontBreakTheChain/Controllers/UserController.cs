@@ -1,4 +1,5 @@
-﻿using DontBreakTheChain.Dto;
+﻿using System.IdentityModel.Tokens.Jwt;
+using DontBreakTheChain.Dto;
 using DontBreakTheChain.Models;
 using DontBreakTheChain.Services;
 using Microsoft.AspNetCore.Authentication;
@@ -51,7 +52,7 @@ namespace DontBreakTheChain.Controllers
 
                     return Ok(new UserDto
                     {
-                        EmailOrUsername = registerDto.Username,
+                        Username = registerDto.Username,
                         Token = TokenService.GenerateToken(user)
                     });
                 }
@@ -74,7 +75,7 @@ namespace DontBreakTheChain.Controllers
         {
             if (ModelState.IsValid)
             {
-                string emailOrUsername = loginDto.EmailOrUsername;
+                string emailOrUsername = loginDto.Username;
                 bool isEmail = emailOrUsername.Contains("@");
                 User? user;
 
@@ -83,14 +84,17 @@ namespace DontBreakTheChain.Controllers
 
                 if (user == null || !await UserManager.CheckPasswordAsync(user, loginDto.Password))
                 {
-                    return Unauthorized();
+                    ModelState.AddModelError("No user", "Check your password or username");
                 }
 
-                return new UserDto
+                else
                 {
-                    EmailOrUsername = loginDto.EmailOrUsername,
-                    Token = TokenService.GenerateToken(user)
-                };
+                    return Ok(new UserDto
+                    {
+                        Username = loginDto.Username,
+                        Token = TokenService.GenerateToken(user)
+                    });
+                }
             }
             return ValidationProblem();
         }
@@ -105,18 +109,14 @@ namespace DontBreakTheChain.Controllers
 
         #endregion
 
-        [HttpPost("logout")]
-        public async Task<ActionResult> Logout()
+        [HttpPost("user")]
+        public async Task<ActionResult> GetUserInfo()
         {
-            await SignInManager.SignOutAsync();
-            return Ok();
-        }
-
-        [HttpGet]
-        public async Task<ActionResult<User>> GetUserInfo()
-        {
-            User user = await UserManager.FindByNameAsync(User?.Identity?.Name);
-            return Ok(user);
+            return Ok(new UserDto
+            {
+                Username = User.Identity.Name,
+                Token = HttpContext.Request.Headers["Authorization"]
+            });
         }
 
         [HttpPost("deleteAccount")]

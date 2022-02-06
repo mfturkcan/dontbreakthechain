@@ -1,8 +1,13 @@
-﻿namespace DontBreakTheChain.Dto
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DontBreakTheChain.Dto
 {
     public class UserDto
     {
-        public string EmailOrUsername { get; set; }
+        [Required]
+        public string Username { get; set; }
+
+        [Required]
         public string Token { get; set; }
     }
 }

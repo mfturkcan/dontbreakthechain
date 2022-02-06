@@ -13,7 +13,7 @@ namespace DontBreakTheChain.Dto
         public string Username { get; set; }
 
         [Required]
-        [DataType(DataType.EmailAddress)]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
     }
 }
